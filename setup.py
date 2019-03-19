@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lynisParser",
-    version="0.1.0",
+    version="0.1.1",
     author="Shane Scott",
     author_email="sscott@gvit.com",
     description="Parse Lynis report issues into lists of dictionaries",
