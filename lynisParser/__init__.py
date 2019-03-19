@@ -76,4 +76,11 @@ class LynisParser:
 
 def test():
     lp = LynisParser()
-    lp.parseReport('lynis.txt')
+    results = lp.parseReport('./lynisParser/test/lynis.txt')
+    if results:
+        testObj = results['Suggestions']
+        print('PASS')
+
+
+if __name__ == "__main__":
+    test()
