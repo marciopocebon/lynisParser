@@ -21,13 +21,14 @@ class LynisParser:
         issueData = ",;".join(inputKeyData).replace("'","").replace("! ", "* ").split("* ")
         issueData = [entry for entry in issueData if len(issueData) > 1]
         issueList = []
+        entryDict = {}
         for entry in issueData:
             entry = entry.replace('",',"").replace('"',"").replace("https:", "URL : https:")
             if "Follow-up:" in entry:
                 entry = entry.split('Follow-up:')[0]
             entrySplit = entry.split(',;')
             entrySplit = [entry for entry in entrySplit if len(entry) > 0]
-            entryDict = {}
+            #entryDict = {}
             entryKey = entrySplit[0]
             if entryKey == '----------------------------':
                 continue
@@ -36,8 +37,9 @@ class LynisParser:
                 entrySplitData = entry.split(" : ")
                 if len(entrySplitData) == 2:
                     entryDict[entryKey][entrySplitData[0]] = entrySplitData[1]
-            issueList.append(entryDict)
-        return issueList
+            #issueList.append(entryDict)
+        #return issueList
+        return entryDict
 
     def splitDataFromLynis(self, inputCleanText):
         keyNames = []
@@ -71,3 +73,7 @@ class LynisParser:
         issuesKeyNames, issuesKeyData = self.splitDataFromLynis(dataIssues)
         issueResults = self.assembleResultsFromLynis(issuesKeyNames, issuesKeyData)
         return issueResults
+
+def test():
+    lp = LynisParser()
+    lp.parseReport('lynis.txt')
